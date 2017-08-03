@@ -11,9 +11,9 @@ BEGIN {
 }
 
 {
-		print "/" recortar($0, 1) "/ {\n   print \"" nombre "\", $0\n}\n"
-		print "/" recortar($0, 2) "/ {\n   print \"" nombre "\", $0\n}\n"
-        print "/" recortar($0, 3) "/ {\n   print \"" nombre "\", $0\n}\n"
+		print "/" recortar($0, 1) "/ {\n   print \"" nombre, "1nt"  "\", $0\n}\n"
+		print "/" recortar($0, 2) "/ {\n   print \"" nombre, "2nt" "\", $0\n}\n"
+        print "/" recortar($0, 3) "/ {\n   print \"" nombre, "3nt" "\", $0\n}\n"
 }
 
 # recorta de str n de nucleótidos al inicio y al final
@@ -22,6 +22,4 @@ function recortar(str, n) {
 		inicio = n + 1
 		fin = length(str) - (2 * n)
 		return substr(str, inicio, fin)
-}
-
-function seqID 
+} 
