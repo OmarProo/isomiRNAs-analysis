@@ -1,0 +1,27 @@
+#!/usr/bin/awk -f
+
+# A partir del un archivo de secuencias de miRNAs maduros en fasta,
+# generar el script que identifica las secuencias y las recorta de los extremos con 1,2 y 3 nucleótidos.
+BEGIN {
+        print  "#!/usr/bin/awk -f\n\nBEGIN {\n  OFS = \"\\t\"\n}\n\n/^>/ {\n    nombre = $0\n    next\n}\n"
+}
+/^>/ {
+        nombre = $0
+        next
+}
+
+{
+		print "/" recortar($0, 1) "/ {\n   print \"" nombre "\", $0\n}\n"
+		print "/" recortar($0, 2) "/ {\n   print \"" nombre "\", $0\n}\n"
+        print "/" recortar($0, 3) "/ {\n   print \"" nombre "\", $0\n}\n"
+}
+
+# recorta de str n de nucleótidos al inicio y al final
+#
+function recortar(str, n) {
+		inicio = n + 1
+		fin = length(str) - (2 * n)
+		return substr(str, inicio, fin)
+}
+
+function seqID 
